@@ -5,9 +5,9 @@ import Image from "next/image";
 
 interface Car {
     id: number;
-    name: string;
     brand: string;
-    price: number;
+    pricePerDay: number;
+    pricePerHour: number;
     image: string;
     available: boolean;
     createdAt: string;
@@ -16,9 +16,9 @@ interface Car {
 export default function CarsPage() {
     const [cars, setCars] = useState<Car[]>([]);
     const [form, setForm] = useState({
-        name: '',
         brand: '',
-        price: '',
+        pricePerDay: '',
+        pricePerHour: '',
         image: '',
     });
 
@@ -38,13 +38,13 @@ export default function CarsPage() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                name: form.name,
                 brand: form.brand,
-                price: parseFloat(form.price),
+                pricePerDay: parseFloat(form.pricePerDay),
+                pricePerHour: parseFloat(form.pricePerHour),
                 image: form.image,
             }),
         });
-        setForm({ name: '', brand: '', price: '', image: '' });
+        setForm({ brand: '', pricePerDay: '', pricePerHour:'', image: '' });
         fetchCars(); // Refresh the car list
     };
 
@@ -55,14 +55,6 @@ export default function CarsPage() {
             <form onSubmit={createCar} className="space-y-4 mb-8">
                 <input
                     type="text"
-                    placeholder="Name"
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="border px-3 py-2 w-full"
-                    required
-                />
-                <input
-                    type="text"
                     placeholder="Brand"
                     value={form.brand}
                     onChange={(e) => setForm({ ...form, brand: e.target.value })}
@@ -71,9 +63,17 @@ export default function CarsPage() {
                 />
                 <input
                     type="number"
-                    placeholder="Price"
-                    value={form.price}
-                    onChange={(e) => setForm({ ...form, price: e.target.value })}
+                    placeholder="pricePerDay"
+                    value={form.pricePerDay}
+                    onChange={(e) => setForm({ ...form, pricePerDay: e.target.value })}
+                    className="border px-3 py-2 w-full"
+                    required
+                />
+                <input
+                    type="number"
+                    placeholder="pricePerHour"
+                    value={form.pricePerHour}
+                    onChange={(e) => setForm({ ...form, pricePerHour: e.target.value })}
                     className="border px-3 py-2 w-full"
                     required
                 />
@@ -106,9 +106,9 @@ export default function CarsPage() {
                 <tr className="bg-gray-200">
                     <th className="p-2 border">ID</th>
                     <th className="p-2 border">Image</th>
-                    <th className="p-2 border">Name</th>
                     <th className="p-2 border">Brand</th>
-                    <th className="p-2 border">Price</th>
+                    <th className="p-2 border">PricePerDay</th>
+                    <th className="p-2 border">PricePerHour</th>
                     <th className="p-2 border">Available</th>
                     <th className="p-2 border">Action</th>
                 </tr>
@@ -121,7 +121,7 @@ export default function CarsPage() {
                             {car.image ? (
                                 <Image
                                     src={car.image}
-                                    alt={car.name}
+                                    alt={car.brand}
                                     className="w-16 h-auto rounded object-cover"
                                     width={25}
                                     height={25}
@@ -130,9 +130,9 @@ export default function CarsPage() {
                                 'No Image'
                             )}
                         </td>
-                        <td className="p-2 border">{car.name}</td>
                         <td className="p-2 border">{car.brand}</td>
-                        <td className="p-2 border">${car.price}</td>
+                        <td className="p-2 border">${car.pricePerDay}</td>
+                        <td className="p-2 border">${car.pricePerHour}</td>
                         <td className="p-2 border">{car.available ? 'Yes' : 'No'}</td>
                         <td className="p-2 border flex items-center gap-2">
                             <button className="bg-green-300 rounded-md p-2">Edit</button>

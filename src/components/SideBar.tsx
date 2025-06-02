@@ -19,6 +19,14 @@ export default function SideBar(){
                     </li>
                     <li>
                         <Link
+                            href="/dashboard/hero-section"
+                            className="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700"
+                        >
+                            Create Hero Section
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
                             href="/dashboard/cars"
                             className="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700"
                         >

@@ -43,6 +43,11 @@ export type Car = $Result.DefaultSelection<Prisma.$CarPayload>
  * 
  */
 export type Reservation = $Result.DefaultSelection<Prisma.$ReservationPayload>
+/**
+ * Model HeroSection
+ * 
+ */
+export type HeroSection = $Result.DefaultSelection<Prisma.$HeroSectionPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -228,6 +233,16 @@ export class PrismaClient<
     * ```
     */
   get reservation(): Prisma.ReservationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.heroSection`: Exposes CRUD operations for the **HeroSection** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more HeroSections
+    * const heroSections = await prisma.heroSection.findMany()
+    * ```
+    */
+  get heroSection(): Prisma.HeroSectionDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -673,7 +688,8 @@ export namespace Prisma {
     Session: 'Session',
     VerificationToken: 'VerificationToken',
     Car: 'Car',
-    Reservation: 'Reservation'
+    Reservation: 'Reservation',
+    HeroSection: 'HeroSection'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -692,7 +708,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "account" | "session" | "verificationToken" | "car" | "reservation"
+      modelProps: "user" | "account" | "session" | "verificationToken" | "car" | "reservation" | "heroSection"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1140,6 +1156,80 @@ export namespace Prisma {
           }
         }
       }
+      HeroSection: {
+        payload: Prisma.$HeroSectionPayload<ExtArgs>
+        fields: Prisma.HeroSectionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.HeroSectionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroSectionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.HeroSectionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroSectionPayload>
+          }
+          findFirst: {
+            args: Prisma.HeroSectionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroSectionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.HeroSectionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroSectionPayload>
+          }
+          findMany: {
+            args: Prisma.HeroSectionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroSectionPayload>[]
+          }
+          create: {
+            args: Prisma.HeroSectionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroSectionPayload>
+          }
+          createMany: {
+            args: Prisma.HeroSectionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.HeroSectionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroSectionPayload>[]
+          }
+          delete: {
+            args: Prisma.HeroSectionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroSectionPayload>
+          }
+          update: {
+            args: Prisma.HeroSectionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroSectionPayload>
+          }
+          deleteMany: {
+            args: Prisma.HeroSectionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.HeroSectionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.HeroSectionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroSectionPayload>[]
+          }
+          upsert: {
+            args: Prisma.HeroSectionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroSectionPayload>
+          }
+          aggregate: {
+            args: Prisma.HeroSectionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHeroSection>
+          }
+          groupBy: {
+            args: Prisma.HeroSectionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HeroSectionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.HeroSectionCountArgs<ExtArgs>
+            result: $Utils.Optional<HeroSectionCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1230,6 +1320,7 @@ export namespace Prisma {
     verificationToken?: VerificationTokenOmit
     car?: CarOmit
     reservation?: ReservationOmit
+    heroSection?: HeroSectionOmit
   }
 
   /* Types for Logging */
@@ -5716,41 +5807,55 @@ export namespace Prisma {
 
   export type CarAvgAggregateOutputType = {
     id: number | null
-    price: number | null
+    pricePerDay: number | null
+    pricePerHour: number | null
   }
 
   export type CarSumAggregateOutputType = {
     id: number | null
-    price: number | null
+    pricePerDay: number | null
+    pricePerHour: number | null
   }
 
   export type CarMinAggregateOutputType = {
     id: number | null
-    name: string | null
     brand: string | null
-    price: number | null
+    pricePerDay: number | null
+    pricePerHour: number | null
     image: string | null
     available: boolean | null
+    heroTitle: string | null
+    heroDesc: string | null
+    heroImage: string | null
+    heroUrl: string | null
     createdAt: Date | null
   }
 
   export type CarMaxAggregateOutputType = {
     id: number | null
-    name: string | null
     brand: string | null
-    price: number | null
+    pricePerDay: number | null
+    pricePerHour: number | null
     image: string | null
     available: boolean | null
+    heroTitle: string | null
+    heroDesc: string | null
+    heroImage: string | null
+    heroUrl: string | null
     createdAt: Date | null
   }
 
   export type CarCountAggregateOutputType = {
     id: number
-    name: number
     brand: number
-    price: number
+    pricePerDay: number
+    pricePerHour: number
     image: number
     available: number
+    heroTitle: number
+    heroDesc: number
+    heroImage: number
+    heroUrl: number
     createdAt: number
     _all: number
   }
@@ -5758,41 +5863,55 @@ export namespace Prisma {
 
   export type CarAvgAggregateInputType = {
     id?: true
-    price?: true
+    pricePerDay?: true
+    pricePerHour?: true
   }
 
   export type CarSumAggregateInputType = {
     id?: true
-    price?: true
+    pricePerDay?: true
+    pricePerHour?: true
   }
 
   export type CarMinAggregateInputType = {
     id?: true
-    name?: true
     brand?: true
-    price?: true
+    pricePerDay?: true
+    pricePerHour?: true
     image?: true
     available?: true
+    heroTitle?: true
+    heroDesc?: true
+    heroImage?: true
+    heroUrl?: true
     createdAt?: true
   }
 
   export type CarMaxAggregateInputType = {
     id?: true
-    name?: true
     brand?: true
-    price?: true
+    pricePerDay?: true
+    pricePerHour?: true
     image?: true
     available?: true
+    heroTitle?: true
+    heroDesc?: true
+    heroImage?: true
+    heroUrl?: true
     createdAt?: true
   }
 
   export type CarCountAggregateInputType = {
     id?: true
-    name?: true
     brand?: true
-    price?: true
+    pricePerDay?: true
+    pricePerHour?: true
     image?: true
     available?: true
+    heroTitle?: true
+    heroDesc?: true
+    heroImage?: true
+    heroUrl?: true
     createdAt?: true
     _all?: true
   }
@@ -5885,11 +6004,15 @@ export namespace Prisma {
 
   export type CarGroupByOutputType = {
     id: number
-    name: string
     brand: string
-    price: number
+    pricePerDay: number
+    pricePerHour: number
     image: string
     available: boolean
+    heroTitle: string | null
+    heroDesc: string | null
+    heroImage: string | null
+    heroUrl: string | null
     createdAt: Date
     _count: CarCountAggregateOutputType | null
     _avg: CarAvgAggregateOutputType | null
@@ -5914,11 +6037,15 @@ export namespace Prisma {
 
   export type CarSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
     brand?: boolean
-    price?: boolean
+    pricePerDay?: boolean
+    pricePerHour?: boolean
     image?: boolean
     available?: boolean
+    heroTitle?: boolean
+    heroDesc?: boolean
+    heroImage?: boolean
+    heroUrl?: boolean
     createdAt?: boolean
     reservations?: boolean | Car$reservationsArgs<ExtArgs>
     _count?: boolean | CarCountOutputTypeDefaultArgs<ExtArgs>
@@ -5926,35 +6053,47 @@ export namespace Prisma {
 
   export type CarSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
     brand?: boolean
-    price?: boolean
+    pricePerDay?: boolean
+    pricePerHour?: boolean
     image?: boolean
     available?: boolean
+    heroTitle?: boolean
+    heroDesc?: boolean
+    heroImage?: boolean
+    heroUrl?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["car"]>
 
   export type CarSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
     brand?: boolean
-    price?: boolean
+    pricePerDay?: boolean
+    pricePerHour?: boolean
     image?: boolean
     available?: boolean
+    heroTitle?: boolean
+    heroDesc?: boolean
+    heroImage?: boolean
+    heroUrl?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["car"]>
 
   export type CarSelectScalar = {
     id?: boolean
-    name?: boolean
     brand?: boolean
-    price?: boolean
+    pricePerDay?: boolean
+    pricePerHour?: boolean
     image?: boolean
     available?: boolean
+    heroTitle?: boolean
+    heroDesc?: boolean
+    heroImage?: boolean
+    heroUrl?: boolean
     createdAt?: boolean
   }
 
-  export type CarOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "brand" | "price" | "image" | "available" | "createdAt", ExtArgs["result"]["car"]>
+  export type CarOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "brand" | "pricePerDay" | "pricePerHour" | "image" | "available" | "heroTitle" | "heroDesc" | "heroImage" | "heroUrl" | "createdAt", ExtArgs["result"]["car"]>
   export type CarInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     reservations?: boolean | Car$reservationsArgs<ExtArgs>
     _count?: boolean | CarCountOutputTypeDefaultArgs<ExtArgs>
@@ -5969,11 +6108,15 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      name: string
       brand: string
-      price: number
+      pricePerDay: number
+      pricePerHour: number
       image: string
       available: boolean
+      heroTitle: string | null
+      heroDesc: string | null
+      heroImage: string | null
+      heroUrl: string | null
       createdAt: Date
     }, ExtArgs["result"]["car"]>
     composites: {}
@@ -6400,11 +6543,15 @@ export namespace Prisma {
    */
   interface CarFieldRefs {
     readonly id: FieldRef<"Car", 'Int'>
-    readonly name: FieldRef<"Car", 'String'>
     readonly brand: FieldRef<"Car", 'String'>
-    readonly price: FieldRef<"Car", 'Float'>
+    readonly pricePerDay: FieldRef<"Car", 'Float'>
+    readonly pricePerHour: FieldRef<"Car", 'Float'>
     readonly image: FieldRef<"Car", 'String'>
     readonly available: FieldRef<"Car", 'Boolean'>
+    readonly heroTitle: FieldRef<"Car", 'String'>
+    readonly heroDesc: FieldRef<"Car", 'String'>
+    readonly heroImage: FieldRef<"Car", 'String'>
+    readonly heroUrl: FieldRef<"Car", 'String'>
     readonly createdAt: FieldRef<"Car", 'DateTime'>
   }
     
@@ -7959,6 +8106,1048 @@ export namespace Prisma {
 
 
   /**
+   * Model HeroSection
+   */
+
+  export type AggregateHeroSection = {
+    _count: HeroSectionCountAggregateOutputType | null
+    _avg: HeroSectionAvgAggregateOutputType | null
+    _sum: HeroSectionSumAggregateOutputType | null
+    _min: HeroSectionMinAggregateOutputType | null
+    _max: HeroSectionMaxAggregateOutputType | null
+  }
+
+  export type HeroSectionAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type HeroSectionSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type HeroSectionMinAggregateOutputType = {
+    id: number | null
+    title: string | null
+    description: string | null
+    image: string | null
+    url: string | null
+    createdAt: Date | null
+  }
+
+  export type HeroSectionMaxAggregateOutputType = {
+    id: number | null
+    title: string | null
+    description: string | null
+    image: string | null
+    url: string | null
+    createdAt: Date | null
+  }
+
+  export type HeroSectionCountAggregateOutputType = {
+    id: number
+    title: number
+    description: number
+    image: number
+    url: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type HeroSectionAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type HeroSectionSumAggregateInputType = {
+    id?: true
+  }
+
+  export type HeroSectionMinAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    image?: true
+    url?: true
+    createdAt?: true
+  }
+
+  export type HeroSectionMaxAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    image?: true
+    url?: true
+    createdAt?: true
+  }
+
+  export type HeroSectionCountAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    image?: true
+    url?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type HeroSectionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which HeroSection to aggregate.
+     */
+    where?: HeroSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HeroSections to fetch.
+     */
+    orderBy?: HeroSectionOrderByWithRelationInput | HeroSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: HeroSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HeroSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HeroSections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned HeroSections
+    **/
+    _count?: true | HeroSectionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: HeroSectionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: HeroSectionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HeroSectionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HeroSectionMaxAggregateInputType
+  }
+
+  export type GetHeroSectionAggregateType<T extends HeroSectionAggregateArgs> = {
+        [P in keyof T & keyof AggregateHeroSection]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHeroSection[P]>
+      : GetScalarType<T[P], AggregateHeroSection[P]>
+  }
+
+
+
+
+  export type HeroSectionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HeroSectionWhereInput
+    orderBy?: HeroSectionOrderByWithAggregationInput | HeroSectionOrderByWithAggregationInput[]
+    by: HeroSectionScalarFieldEnum[] | HeroSectionScalarFieldEnum
+    having?: HeroSectionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HeroSectionCountAggregateInputType | true
+    _avg?: HeroSectionAvgAggregateInputType
+    _sum?: HeroSectionSumAggregateInputType
+    _min?: HeroSectionMinAggregateInputType
+    _max?: HeroSectionMaxAggregateInputType
+  }
+
+  export type HeroSectionGroupByOutputType = {
+    id: number
+    title: string
+    description: string
+    image: string
+    url: string
+    createdAt: Date
+    _count: HeroSectionCountAggregateOutputType | null
+    _avg: HeroSectionAvgAggregateOutputType | null
+    _sum: HeroSectionSumAggregateOutputType | null
+    _min: HeroSectionMinAggregateOutputType | null
+    _max: HeroSectionMaxAggregateOutputType | null
+  }
+
+  type GetHeroSectionGroupByPayload<T extends HeroSectionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HeroSectionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HeroSectionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HeroSectionGroupByOutputType[P]>
+            : GetScalarType<T[P], HeroSectionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type HeroSectionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    image?: boolean
+    url?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["heroSection"]>
+
+  export type HeroSectionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    image?: boolean
+    url?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["heroSection"]>
+
+  export type HeroSectionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    image?: boolean
+    url?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["heroSection"]>
+
+  export type HeroSectionSelectScalar = {
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    image?: boolean
+    url?: boolean
+    createdAt?: boolean
+  }
+
+  export type HeroSectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "image" | "url" | "createdAt", ExtArgs["result"]["heroSection"]>
+
+  export type $HeroSectionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "HeroSection"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      title: string
+      description: string
+      image: string
+      url: string
+      createdAt: Date
+    }, ExtArgs["result"]["heroSection"]>
+    composites: {}
+  }
+
+  type HeroSectionGetPayload<S extends boolean | null | undefined | HeroSectionDefaultArgs> = $Result.GetResult<Prisma.$HeroSectionPayload, S>
+
+  type HeroSectionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<HeroSectionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: HeroSectionCountAggregateInputType | true
+    }
+
+  export interface HeroSectionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['HeroSection'], meta: { name: 'HeroSection' } }
+    /**
+     * Find zero or one HeroSection that matches the filter.
+     * @param {HeroSectionFindUniqueArgs} args - Arguments to find a HeroSection
+     * @example
+     * // Get one HeroSection
+     * const heroSection = await prisma.heroSection.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends HeroSectionFindUniqueArgs>(args: SelectSubset<T, HeroSectionFindUniqueArgs<ExtArgs>>): Prisma__HeroSectionClient<$Result.GetResult<Prisma.$HeroSectionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one HeroSection that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {HeroSectionFindUniqueOrThrowArgs} args - Arguments to find a HeroSection
+     * @example
+     * // Get one HeroSection
+     * const heroSection = await prisma.heroSection.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends HeroSectionFindUniqueOrThrowArgs>(args: SelectSubset<T, HeroSectionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HeroSectionClient<$Result.GetResult<Prisma.$HeroSectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first HeroSection that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeroSectionFindFirstArgs} args - Arguments to find a HeroSection
+     * @example
+     * // Get one HeroSection
+     * const heroSection = await prisma.heroSection.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends HeroSectionFindFirstArgs>(args?: SelectSubset<T, HeroSectionFindFirstArgs<ExtArgs>>): Prisma__HeroSectionClient<$Result.GetResult<Prisma.$HeroSectionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first HeroSection that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeroSectionFindFirstOrThrowArgs} args - Arguments to find a HeroSection
+     * @example
+     * // Get one HeroSection
+     * const heroSection = await prisma.heroSection.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends HeroSectionFindFirstOrThrowArgs>(args?: SelectSubset<T, HeroSectionFindFirstOrThrowArgs<ExtArgs>>): Prisma__HeroSectionClient<$Result.GetResult<Prisma.$HeroSectionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more HeroSections that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeroSectionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all HeroSections
+     * const heroSections = await prisma.heroSection.findMany()
+     * 
+     * // Get first 10 HeroSections
+     * const heroSections = await prisma.heroSection.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const heroSectionWithIdOnly = await prisma.heroSection.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends HeroSectionFindManyArgs>(args?: SelectSubset<T, HeroSectionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeroSectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a HeroSection.
+     * @param {HeroSectionCreateArgs} args - Arguments to create a HeroSection.
+     * @example
+     * // Create one HeroSection
+     * const HeroSection = await prisma.heroSection.create({
+     *   data: {
+     *     // ... data to create a HeroSection
+     *   }
+     * })
+     * 
+     */
+    create<T extends HeroSectionCreateArgs>(args: SelectSubset<T, HeroSectionCreateArgs<ExtArgs>>): Prisma__HeroSectionClient<$Result.GetResult<Prisma.$HeroSectionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many HeroSections.
+     * @param {HeroSectionCreateManyArgs} args - Arguments to create many HeroSections.
+     * @example
+     * // Create many HeroSections
+     * const heroSection = await prisma.heroSection.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends HeroSectionCreateManyArgs>(args?: SelectSubset<T, HeroSectionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many HeroSections and returns the data saved in the database.
+     * @param {HeroSectionCreateManyAndReturnArgs} args - Arguments to create many HeroSections.
+     * @example
+     * // Create many HeroSections
+     * const heroSection = await prisma.heroSection.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many HeroSections and only return the `id`
+     * const heroSectionWithIdOnly = await prisma.heroSection.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends HeroSectionCreateManyAndReturnArgs>(args?: SelectSubset<T, HeroSectionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeroSectionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a HeroSection.
+     * @param {HeroSectionDeleteArgs} args - Arguments to delete one HeroSection.
+     * @example
+     * // Delete one HeroSection
+     * const HeroSection = await prisma.heroSection.delete({
+     *   where: {
+     *     // ... filter to delete one HeroSection
+     *   }
+     * })
+     * 
+     */
+    delete<T extends HeroSectionDeleteArgs>(args: SelectSubset<T, HeroSectionDeleteArgs<ExtArgs>>): Prisma__HeroSectionClient<$Result.GetResult<Prisma.$HeroSectionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one HeroSection.
+     * @param {HeroSectionUpdateArgs} args - Arguments to update one HeroSection.
+     * @example
+     * // Update one HeroSection
+     * const heroSection = await prisma.heroSection.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends HeroSectionUpdateArgs>(args: SelectSubset<T, HeroSectionUpdateArgs<ExtArgs>>): Prisma__HeroSectionClient<$Result.GetResult<Prisma.$HeroSectionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more HeroSections.
+     * @param {HeroSectionDeleteManyArgs} args - Arguments to filter HeroSections to delete.
+     * @example
+     * // Delete a few HeroSections
+     * const { count } = await prisma.heroSection.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends HeroSectionDeleteManyArgs>(args?: SelectSubset<T, HeroSectionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more HeroSections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeroSectionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many HeroSections
+     * const heroSection = await prisma.heroSection.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends HeroSectionUpdateManyArgs>(args: SelectSubset<T, HeroSectionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more HeroSections and returns the data updated in the database.
+     * @param {HeroSectionUpdateManyAndReturnArgs} args - Arguments to update many HeroSections.
+     * @example
+     * // Update many HeroSections
+     * const heroSection = await prisma.heroSection.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more HeroSections and only return the `id`
+     * const heroSectionWithIdOnly = await prisma.heroSection.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends HeroSectionUpdateManyAndReturnArgs>(args: SelectSubset<T, HeroSectionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeroSectionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one HeroSection.
+     * @param {HeroSectionUpsertArgs} args - Arguments to update or create a HeroSection.
+     * @example
+     * // Update or create a HeroSection
+     * const heroSection = await prisma.heroSection.upsert({
+     *   create: {
+     *     // ... data to create a HeroSection
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the HeroSection we want to update
+     *   }
+     * })
+     */
+    upsert<T extends HeroSectionUpsertArgs>(args: SelectSubset<T, HeroSectionUpsertArgs<ExtArgs>>): Prisma__HeroSectionClient<$Result.GetResult<Prisma.$HeroSectionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of HeroSections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeroSectionCountArgs} args - Arguments to filter HeroSections to count.
+     * @example
+     * // Count the number of HeroSections
+     * const count = await prisma.heroSection.count({
+     *   where: {
+     *     // ... the filter for the HeroSections we want to count
+     *   }
+     * })
+    **/
+    count<T extends HeroSectionCountArgs>(
+      args?: Subset<T, HeroSectionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], HeroSectionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a HeroSection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeroSectionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends HeroSectionAggregateArgs>(args: Subset<T, HeroSectionAggregateArgs>): Prisma.PrismaPromise<GetHeroSectionAggregateType<T>>
+
+    /**
+     * Group by HeroSection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeroSectionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends HeroSectionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: HeroSectionGroupByArgs['orderBy'] }
+        : { orderBy?: HeroSectionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, HeroSectionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHeroSectionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the HeroSection model
+   */
+  readonly fields: HeroSectionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for HeroSection.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__HeroSectionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the HeroSection model
+   */
+  interface HeroSectionFieldRefs {
+    readonly id: FieldRef<"HeroSection", 'Int'>
+    readonly title: FieldRef<"HeroSection", 'String'>
+    readonly description: FieldRef<"HeroSection", 'String'>
+    readonly image: FieldRef<"HeroSection", 'String'>
+    readonly url: FieldRef<"HeroSection", 'String'>
+    readonly createdAt: FieldRef<"HeroSection", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * HeroSection findUnique
+   */
+  export type HeroSectionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroSection
+     */
+    select?: HeroSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroSection
+     */
+    omit?: HeroSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which HeroSection to fetch.
+     */
+    where: HeroSectionWhereUniqueInput
+  }
+
+  /**
+   * HeroSection findUniqueOrThrow
+   */
+  export type HeroSectionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroSection
+     */
+    select?: HeroSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroSection
+     */
+    omit?: HeroSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which HeroSection to fetch.
+     */
+    where: HeroSectionWhereUniqueInput
+  }
+
+  /**
+   * HeroSection findFirst
+   */
+  export type HeroSectionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroSection
+     */
+    select?: HeroSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroSection
+     */
+    omit?: HeroSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which HeroSection to fetch.
+     */
+    where?: HeroSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HeroSections to fetch.
+     */
+    orderBy?: HeroSectionOrderByWithRelationInput | HeroSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for HeroSections.
+     */
+    cursor?: HeroSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HeroSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HeroSections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HeroSections.
+     */
+    distinct?: HeroSectionScalarFieldEnum | HeroSectionScalarFieldEnum[]
+  }
+
+  /**
+   * HeroSection findFirstOrThrow
+   */
+  export type HeroSectionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroSection
+     */
+    select?: HeroSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroSection
+     */
+    omit?: HeroSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which HeroSection to fetch.
+     */
+    where?: HeroSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HeroSections to fetch.
+     */
+    orderBy?: HeroSectionOrderByWithRelationInput | HeroSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for HeroSections.
+     */
+    cursor?: HeroSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HeroSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HeroSections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HeroSections.
+     */
+    distinct?: HeroSectionScalarFieldEnum | HeroSectionScalarFieldEnum[]
+  }
+
+  /**
+   * HeroSection findMany
+   */
+  export type HeroSectionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroSection
+     */
+    select?: HeroSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroSection
+     */
+    omit?: HeroSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which HeroSections to fetch.
+     */
+    where?: HeroSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HeroSections to fetch.
+     */
+    orderBy?: HeroSectionOrderByWithRelationInput | HeroSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing HeroSections.
+     */
+    cursor?: HeroSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HeroSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HeroSections.
+     */
+    skip?: number
+    distinct?: HeroSectionScalarFieldEnum | HeroSectionScalarFieldEnum[]
+  }
+
+  /**
+   * HeroSection create
+   */
+  export type HeroSectionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroSection
+     */
+    select?: HeroSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroSection
+     */
+    omit?: HeroSectionOmit<ExtArgs> | null
+    /**
+     * The data needed to create a HeroSection.
+     */
+    data: XOR<HeroSectionCreateInput, HeroSectionUncheckedCreateInput>
+  }
+
+  /**
+   * HeroSection createMany
+   */
+  export type HeroSectionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many HeroSections.
+     */
+    data: HeroSectionCreateManyInput | HeroSectionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * HeroSection createManyAndReturn
+   */
+  export type HeroSectionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroSection
+     */
+    select?: HeroSectionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroSection
+     */
+    omit?: HeroSectionOmit<ExtArgs> | null
+    /**
+     * The data used to create many HeroSections.
+     */
+    data: HeroSectionCreateManyInput | HeroSectionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * HeroSection update
+   */
+  export type HeroSectionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroSection
+     */
+    select?: HeroSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroSection
+     */
+    omit?: HeroSectionOmit<ExtArgs> | null
+    /**
+     * The data needed to update a HeroSection.
+     */
+    data: XOR<HeroSectionUpdateInput, HeroSectionUncheckedUpdateInput>
+    /**
+     * Choose, which HeroSection to update.
+     */
+    where: HeroSectionWhereUniqueInput
+  }
+
+  /**
+   * HeroSection updateMany
+   */
+  export type HeroSectionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update HeroSections.
+     */
+    data: XOR<HeroSectionUpdateManyMutationInput, HeroSectionUncheckedUpdateManyInput>
+    /**
+     * Filter which HeroSections to update
+     */
+    where?: HeroSectionWhereInput
+    /**
+     * Limit how many HeroSections to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * HeroSection updateManyAndReturn
+   */
+  export type HeroSectionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroSection
+     */
+    select?: HeroSectionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroSection
+     */
+    omit?: HeroSectionOmit<ExtArgs> | null
+    /**
+     * The data used to update HeroSections.
+     */
+    data: XOR<HeroSectionUpdateManyMutationInput, HeroSectionUncheckedUpdateManyInput>
+    /**
+     * Filter which HeroSections to update
+     */
+    where?: HeroSectionWhereInput
+    /**
+     * Limit how many HeroSections to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * HeroSection upsert
+   */
+  export type HeroSectionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroSection
+     */
+    select?: HeroSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroSection
+     */
+    omit?: HeroSectionOmit<ExtArgs> | null
+    /**
+     * The filter to search for the HeroSection to update in case it exists.
+     */
+    where: HeroSectionWhereUniqueInput
+    /**
+     * In case the HeroSection found by the `where` argument doesn't exist, create a new HeroSection with this data.
+     */
+    create: XOR<HeroSectionCreateInput, HeroSectionUncheckedCreateInput>
+    /**
+     * In case the HeroSection was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<HeroSectionUpdateInput, HeroSectionUncheckedUpdateInput>
+  }
+
+  /**
+   * HeroSection delete
+   */
+  export type HeroSectionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroSection
+     */
+    select?: HeroSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroSection
+     */
+    omit?: HeroSectionOmit<ExtArgs> | null
+    /**
+     * Filter which HeroSection to delete.
+     */
+    where: HeroSectionWhereUniqueInput
+  }
+
+  /**
+   * HeroSection deleteMany
+   */
+  export type HeroSectionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which HeroSections to delete
+     */
+    where?: HeroSectionWhereInput
+    /**
+     * Limit how many HeroSections to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * HeroSection without action
+   */
+  export type HeroSectionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroSection
+     */
+    select?: HeroSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HeroSection
+     */
+    omit?: HeroSectionOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -8023,11 +9212,15 @@ export namespace Prisma {
 
   export const CarScalarFieldEnum: {
     id: 'id',
-    name: 'name',
     brand: 'brand',
-    price: 'price',
+    pricePerDay: 'pricePerDay',
+    pricePerHour: 'pricePerHour',
     image: 'image',
     available: 'available',
+    heroTitle: 'heroTitle',
+    heroDesc: 'heroDesc',
+    heroImage: 'heroImage',
+    heroUrl: 'heroUrl',
     createdAt: 'createdAt'
   };
 
@@ -8045,6 +9238,18 @@ export namespace Prisma {
   };
 
   export type ReservationScalarFieldEnum = (typeof ReservationScalarFieldEnum)[keyof typeof ReservationScalarFieldEnum]
+
+
+  export const HeroSectionScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    description: 'description',
+    image: 'image',
+    url: 'url',
+    createdAt: 'createdAt'
+  };
+
+  export type HeroSectionScalarFieldEnum = (typeof HeroSectionScalarFieldEnum)[keyof typeof HeroSectionScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -8396,22 +9601,30 @@ export namespace Prisma {
     OR?: CarWhereInput[]
     NOT?: CarWhereInput | CarWhereInput[]
     id?: IntFilter<"Car"> | number
-    name?: StringFilter<"Car"> | string
     brand?: StringFilter<"Car"> | string
-    price?: FloatFilter<"Car"> | number
+    pricePerDay?: FloatFilter<"Car"> | number
+    pricePerHour?: FloatFilter<"Car"> | number
     image?: StringFilter<"Car"> | string
     available?: BoolFilter<"Car"> | boolean
+    heroTitle?: StringNullableFilter<"Car"> | string | null
+    heroDesc?: StringNullableFilter<"Car"> | string | null
+    heroImage?: StringNullableFilter<"Car"> | string | null
+    heroUrl?: StringNullableFilter<"Car"> | string | null
     createdAt?: DateTimeFilter<"Car"> | Date | string
     reservations?: ReservationListRelationFilter
   }
 
   export type CarOrderByWithRelationInput = {
     id?: SortOrder
-    name?: SortOrder
     brand?: SortOrder
-    price?: SortOrder
+    pricePerDay?: SortOrder
+    pricePerHour?: SortOrder
     image?: SortOrder
     available?: SortOrder
+    heroTitle?: SortOrderInput | SortOrder
+    heroDesc?: SortOrderInput | SortOrder
+    heroImage?: SortOrderInput | SortOrder
+    heroUrl?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     reservations?: ReservationOrderByRelationAggregateInput
   }
@@ -8421,22 +9634,30 @@ export namespace Prisma {
     AND?: CarWhereInput | CarWhereInput[]
     OR?: CarWhereInput[]
     NOT?: CarWhereInput | CarWhereInput[]
-    name?: StringFilter<"Car"> | string
     brand?: StringFilter<"Car"> | string
-    price?: FloatFilter<"Car"> | number
+    pricePerDay?: FloatFilter<"Car"> | number
+    pricePerHour?: FloatFilter<"Car"> | number
     image?: StringFilter<"Car"> | string
     available?: BoolFilter<"Car"> | boolean
+    heroTitle?: StringNullableFilter<"Car"> | string | null
+    heroDesc?: StringNullableFilter<"Car"> | string | null
+    heroImage?: StringNullableFilter<"Car"> | string | null
+    heroUrl?: StringNullableFilter<"Car"> | string | null
     createdAt?: DateTimeFilter<"Car"> | Date | string
     reservations?: ReservationListRelationFilter
   }, "id">
 
   export type CarOrderByWithAggregationInput = {
     id?: SortOrder
-    name?: SortOrder
     brand?: SortOrder
-    price?: SortOrder
+    pricePerDay?: SortOrder
+    pricePerHour?: SortOrder
     image?: SortOrder
     available?: SortOrder
+    heroTitle?: SortOrderInput | SortOrder
+    heroDesc?: SortOrderInput | SortOrder
+    heroImage?: SortOrderInput | SortOrder
+    heroUrl?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: CarCountOrderByAggregateInput
     _avg?: CarAvgOrderByAggregateInput
@@ -8450,11 +9671,15 @@ export namespace Prisma {
     OR?: CarScalarWhereWithAggregatesInput[]
     NOT?: CarScalarWhereWithAggregatesInput | CarScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Car"> | number
-    name?: StringWithAggregatesFilter<"Car"> | string
     brand?: StringWithAggregatesFilter<"Car"> | string
-    price?: FloatWithAggregatesFilter<"Car"> | number
+    pricePerDay?: FloatWithAggregatesFilter<"Car"> | number
+    pricePerHour?: FloatWithAggregatesFilter<"Car"> | number
     image?: StringWithAggregatesFilter<"Car"> | string
     available?: BoolWithAggregatesFilter<"Car"> | boolean
+    heroTitle?: StringNullableWithAggregatesFilter<"Car"> | string | null
+    heroDesc?: StringNullableWithAggregatesFilter<"Car"> | string | null
+    heroImage?: StringNullableWithAggregatesFilter<"Car"> | string | null
+    heroUrl?: StringNullableWithAggregatesFilter<"Car"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Car"> | Date | string
   }
 
@@ -8523,6 +9748,65 @@ export namespace Prisma {
     carId?: IntWithAggregatesFilter<"Reservation"> | number
     message?: StringWithAggregatesFilter<"Reservation"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Reservation"> | Date | string
+  }
+
+  export type HeroSectionWhereInput = {
+    AND?: HeroSectionWhereInput | HeroSectionWhereInput[]
+    OR?: HeroSectionWhereInput[]
+    NOT?: HeroSectionWhereInput | HeroSectionWhereInput[]
+    id?: IntFilter<"HeroSection"> | number
+    title?: StringFilter<"HeroSection"> | string
+    description?: StringFilter<"HeroSection"> | string
+    image?: StringFilter<"HeroSection"> | string
+    url?: StringFilter<"HeroSection"> | string
+    createdAt?: DateTimeFilter<"HeroSection"> | Date | string
+  }
+
+  export type HeroSectionOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    image?: SortOrder
+    url?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type HeroSectionWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: HeroSectionWhereInput | HeroSectionWhereInput[]
+    OR?: HeroSectionWhereInput[]
+    NOT?: HeroSectionWhereInput | HeroSectionWhereInput[]
+    title?: StringFilter<"HeroSection"> | string
+    description?: StringFilter<"HeroSection"> | string
+    image?: StringFilter<"HeroSection"> | string
+    url?: StringFilter<"HeroSection"> | string
+    createdAt?: DateTimeFilter<"HeroSection"> | Date | string
+  }, "id">
+
+  export type HeroSectionOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    image?: SortOrder
+    url?: SortOrder
+    createdAt?: SortOrder
+    _count?: HeroSectionCountOrderByAggregateInput
+    _avg?: HeroSectionAvgOrderByAggregateInput
+    _max?: HeroSectionMaxOrderByAggregateInput
+    _min?: HeroSectionMinOrderByAggregateInput
+    _sum?: HeroSectionSumOrderByAggregateInput
+  }
+
+  export type HeroSectionScalarWhereWithAggregatesInput = {
+    AND?: HeroSectionScalarWhereWithAggregatesInput | HeroSectionScalarWhereWithAggregatesInput[]
+    OR?: HeroSectionScalarWhereWithAggregatesInput[]
+    NOT?: HeroSectionScalarWhereWithAggregatesInput | HeroSectionScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"HeroSection"> | number
+    title?: StringWithAggregatesFilter<"HeroSection"> | string
+    description?: StringWithAggregatesFilter<"HeroSection"> | string
+    image?: StringWithAggregatesFilter<"HeroSection"> | string
+    url?: StringWithAggregatesFilter<"HeroSection"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"HeroSection"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -8791,73 +10075,101 @@ export namespace Prisma {
   }
 
   export type CarCreateInput = {
-    name: string
     brand: string
-    price: number
+    pricePerDay: number
+    pricePerHour: number
     image: string
     available?: boolean
+    heroTitle?: string | null
+    heroDesc?: string | null
+    heroImage?: string | null
+    heroUrl?: string | null
     createdAt?: Date | string
     reservations?: ReservationCreateNestedManyWithoutCarInput
   }
 
   export type CarUncheckedCreateInput = {
     id?: number
-    name: string
     brand: string
-    price: number
+    pricePerDay: number
+    pricePerHour: number
     image: string
     available?: boolean
+    heroTitle?: string | null
+    heroDesc?: string | null
+    heroImage?: string | null
+    heroUrl?: string | null
     createdAt?: Date | string
     reservations?: ReservationUncheckedCreateNestedManyWithoutCarInput
   }
 
   export type CarUpdateInput = {
-    name?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    pricePerDay?: FloatFieldUpdateOperationsInput | number
+    pricePerHour?: FloatFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
     available?: BoolFieldUpdateOperationsInput | boolean
+    heroTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    heroDesc?: NullableStringFieldUpdateOperationsInput | string | null
+    heroImage?: NullableStringFieldUpdateOperationsInput | string | null
+    heroUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reservations?: ReservationUpdateManyWithoutCarNestedInput
   }
 
   export type CarUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    pricePerDay?: FloatFieldUpdateOperationsInput | number
+    pricePerHour?: FloatFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
     available?: BoolFieldUpdateOperationsInput | boolean
+    heroTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    heroDesc?: NullableStringFieldUpdateOperationsInput | string | null
+    heroImage?: NullableStringFieldUpdateOperationsInput | string | null
+    heroUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reservations?: ReservationUncheckedUpdateManyWithoutCarNestedInput
   }
 
   export type CarCreateManyInput = {
     id?: number
-    name: string
     brand: string
-    price: number
+    pricePerDay: number
+    pricePerHour: number
     image: string
     available?: boolean
+    heroTitle?: string | null
+    heroDesc?: string | null
+    heroImage?: string | null
+    heroUrl?: string | null
     createdAt?: Date | string
   }
 
   export type CarUpdateManyMutationInput = {
-    name?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    pricePerDay?: FloatFieldUpdateOperationsInput | number
+    pricePerHour?: FloatFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
     available?: BoolFieldUpdateOperationsInput | boolean
+    heroTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    heroDesc?: NullableStringFieldUpdateOperationsInput | string | null
+    heroImage?: NullableStringFieldUpdateOperationsInput | string | null
+    heroUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CarUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    pricePerDay?: FloatFieldUpdateOperationsInput | number
+    pricePerHour?: FloatFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
     available?: BoolFieldUpdateOperationsInput | boolean
+    heroTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    heroDesc?: NullableStringFieldUpdateOperationsInput | string | null
+    heroImage?: NullableStringFieldUpdateOperationsInput | string | null
+    heroUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -8924,6 +10236,66 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     carId?: IntFieldUpdateOperationsInput | number
     message?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HeroSectionCreateInput = {
+    title: string
+    description: string
+    image: string
+    url: string
+    createdAt?: Date | string
+  }
+
+  export type HeroSectionUncheckedCreateInput = {
+    id?: number
+    title: string
+    description: string
+    image: string
+    url: string
+    createdAt?: Date | string
+  }
+
+  export type HeroSectionUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HeroSectionUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HeroSectionCreateManyInput = {
+    id?: number
+    title: string
+    description: string
+    image: string
+    url: string
+    createdAt?: Date | string
+  }
+
+  export type HeroSectionUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HeroSectionUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -9268,42 +10640,56 @@ export namespace Prisma {
 
   export type CarCountOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
     brand?: SortOrder
-    price?: SortOrder
+    pricePerDay?: SortOrder
+    pricePerHour?: SortOrder
     image?: SortOrder
     available?: SortOrder
+    heroTitle?: SortOrder
+    heroDesc?: SortOrder
+    heroImage?: SortOrder
+    heroUrl?: SortOrder
     createdAt?: SortOrder
   }
 
   export type CarAvgOrderByAggregateInput = {
     id?: SortOrder
-    price?: SortOrder
+    pricePerDay?: SortOrder
+    pricePerHour?: SortOrder
   }
 
   export type CarMaxOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
     brand?: SortOrder
-    price?: SortOrder
+    pricePerDay?: SortOrder
+    pricePerHour?: SortOrder
     image?: SortOrder
     available?: SortOrder
+    heroTitle?: SortOrder
+    heroDesc?: SortOrder
+    heroImage?: SortOrder
+    heroUrl?: SortOrder
     createdAt?: SortOrder
   }
 
   export type CarMinOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
     brand?: SortOrder
-    price?: SortOrder
+    pricePerDay?: SortOrder
+    pricePerHour?: SortOrder
     image?: SortOrder
     available?: SortOrder
+    heroTitle?: SortOrder
+    heroDesc?: SortOrder
+    heroImage?: SortOrder
+    heroUrl?: SortOrder
     createdAt?: SortOrder
   }
 
   export type CarSumOrderByAggregateInput = {
     id?: SortOrder
-    price?: SortOrder
+    pricePerDay?: SortOrder
+    pricePerHour?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -9389,6 +10775,41 @@ export namespace Prisma {
   export type ReservationSumOrderByAggregateInput = {
     id?: SortOrder
     carId?: SortOrder
+  }
+
+  export type HeroSectionCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    image?: SortOrder
+    url?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type HeroSectionAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type HeroSectionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    image?: SortOrder
+    url?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type HeroSectionMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    image?: SortOrder
+    url?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type HeroSectionSumOrderByAggregateInput = {
+    id?: SortOrder
   }
 
   export type AccountCreateNestedManyWithoutUserInput = {
@@ -10109,21 +11530,29 @@ export namespace Prisma {
   }
 
   export type CarCreateWithoutReservationsInput = {
-    name: string
     brand: string
-    price: number
+    pricePerDay: number
+    pricePerHour: number
     image: string
     available?: boolean
+    heroTitle?: string | null
+    heroDesc?: string | null
+    heroImage?: string | null
+    heroUrl?: string | null
     createdAt?: Date | string
   }
 
   export type CarUncheckedCreateWithoutReservationsInput = {
     id?: number
-    name: string
     brand: string
-    price: number
+    pricePerDay: number
+    pricePerHour: number
     image: string
     available?: boolean
+    heroTitle?: string | null
+    heroDesc?: string | null
+    heroImage?: string | null
+    heroUrl?: string | null
     createdAt?: Date | string
   }
 
@@ -10144,21 +11573,29 @@ export namespace Prisma {
   }
 
   export type CarUpdateWithoutReservationsInput = {
-    name?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    pricePerDay?: FloatFieldUpdateOperationsInput | number
+    pricePerHour?: FloatFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
     available?: BoolFieldUpdateOperationsInput | boolean
+    heroTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    heroDesc?: NullableStringFieldUpdateOperationsInput | string | null
+    heroImage?: NullableStringFieldUpdateOperationsInput | string | null
+    heroUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CarUncheckedUpdateWithoutReservationsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    pricePerDay?: FloatFieldUpdateOperationsInput | number
+    pricePerHour?: FloatFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
     available?: BoolFieldUpdateOperationsInput | boolean
+    heroTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    heroDesc?: NullableStringFieldUpdateOperationsInput | string | null
+    heroImage?: NullableStringFieldUpdateOperationsInput | string | null
+    heroUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

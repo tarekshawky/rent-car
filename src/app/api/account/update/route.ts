@@ -20,6 +20,6 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ message: "Account updated successfully" })
     } catch (error) {
-        return NextResponse.json({ message: "Update failed" }, { status: 500 })
+        return NextResponse.json({error, message: "Update failed" }, { status: 500 })
     }
 }

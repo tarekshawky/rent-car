@@ -159,11 +159,15 @@ exports.Prisma.VerificationTokenScalarFieldEnum = {
 
 exports.Prisma.CarScalarFieldEnum = {
   id: 'id',
-  name: 'name',
   brand: 'brand',
-  price: 'price',
+  pricePerDay: 'pricePerDay',
+  pricePerHour: 'pricePerHour',
   image: 'image',
   available: 'available',
+  heroTitle: 'heroTitle',
+  heroDesc: 'heroDesc',
+  heroImage: 'heroImage',
+  heroUrl: 'heroUrl',
   createdAt: 'createdAt'
 };
 
@@ -174,6 +178,15 @@ exports.Prisma.ReservationScalarFieldEnum = {
   phone: 'phone',
   carId: 'carId',
   message: 'message',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.HeroSectionScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  image: 'image',
+  url: 'url',
   createdAt: 'createdAt'
 };
 
@@ -199,7 +212,8 @@ exports.Prisma.ModelName = {
   Session: 'Session',
   VerificationToken: 'VerificationToken',
   Car: 'Car',
-  Reservation: 'Reservation'
+  Reservation: 'Reservation',
+  HeroSection: 'HeroSection'
 };
 
 /**

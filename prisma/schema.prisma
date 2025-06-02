@@ -63,11 +63,15 @@ model VerificationToken {
 
 model Car {
   id           Int           @id @default(autoincrement())
-  name         String
   brand        String
-  price        Float
+  pricePerDay  Float
+  pricePerHour Float
   image        String
   available    Boolean       @default(true)
+  heroTitle    String?
+  heroDesc     String?
+  heroImage    String?
+  heroUrl      String?
   createdAt    DateTime      @default(now())
   reservations Reservation[]
 }
@@ -81,4 +85,13 @@ model Reservation {
   message   String
   createdAt DateTime @default(now())
   Car       Car      @relation(fields: [carId], references: [id])
+}
+
+model HeroSection {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  image       String
+  url         String
+  createdAt   DateTime @default(now())
 }
