@@ -1,105 +1,26 @@
-'use client';
-
-import { useEffect, useState } from 'react';
 import Image from "next/image";
+import {getCars} from "@/lib/actions";
+import {CarForm} from "@/components/CarForm";
+import Link from "next/link";
+export const dynamic = "force-dynamic";
 
-interface Car {
-    id: number;
-    brand: string;
-    pricePerDay: number;
-    pricePerHour: number;
-    image: string;
-    available: boolean;
-    createdAt: string;
-}
-
-export default function CarsPage() {
-    const [cars, setCars] = useState<Car[]>([]);
-    const [form, setForm] = useState({
-        brand: '',
-        pricePerDay: '',
-        pricePerHour: '',
-        image: '',
-    });
-
-    useEffect(() => {
-        fetchCars();
-    }, []);
-
-    const fetchCars = async () => {
-        const res = await fetch('/api/cars');
-        const data = await res.json();
-        setCars(data);
-    };
-
-    const createCar = async (e: React.FormEvent) => {
-        e.preventDefault();
-        await fetch('/api/cars', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                brand: form.brand,
-                pricePerDay: parseFloat(form.pricePerDay),
-                pricePerHour: parseFloat(form.pricePerHour),
-                image: form.image,
-            }),
-        });
-        setForm({ brand: '', pricePerDay: '', pricePerHour:'', image: '' });
-        fetchCars(); // Refresh the car list
-    };
-
+type Props = {
+    searchParams?: Promise<{ page?: string }>;
+};
+export default async function CarsPage({ searchParams }: Props) {
+    const params = await searchParams;
+    const currentPage =  parseInt(params?.page || "1", 10);
+    const page = isNaN(currentPage) || currentPage < 1 ? 1 : currentPage;
+    const limit = 5;
+    const offset = (page - 1) * limit;
+    const { cars, total } = await getCars(limit, offset);
+    const totalPages = Math.ceil(total / limit);
+    // const cars = await getCars(5, 0)
     return (
         <div className="max-w-4xl mx-auto p-4">
             <h1 className="text-2xl font-bold mb-4">Car Management</h1>
 
-            <form onSubmit={createCar} className="space-y-4 mb-8">
-                <input
-                    type="text"
-                    placeholder="Brand"
-                    value={form.brand}
-                    onChange={(e) => setForm({ ...form, brand: e.target.value })}
-                    className="border px-3 py-2 w-full"
-                    required
-                />
-                <input
-                    type="number"
-                    placeholder="pricePerDay"
-                    value={form.pricePerDay}
-                    onChange={(e) => setForm({ ...form, pricePerDay: e.target.value })}
-                    className="border px-3 py-2 w-full"
-                    required
-                />
-                <input
-                    type="number"
-                    placeholder="pricePerHour"
-                    value={form.pricePerHour}
-                    onChange={(e) => setForm({ ...form, pricePerHour: e.target.value })}
-                    className="border px-3 py-2 w-full"
-                    required
-                />
-                <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => {
-                        const file = e.target.files?.[0];
-                        if (file) {
-                            const reader = new FileReader();
-                            reader.onloadend = () => {
-                                setForm({ ...form, image: reader.result as string });
-                            };
-                            reader.readAsDataURL(file); // Convert image to base64
-                        }
-                    }}
-                    className="border px-3 py-2 w-full"
-                />
-                <button
-                    type="submit"
-                    className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-                >
-                    Add Car
-                </button>
-            </form>
-
+            <CarForm />
             <h2 className="text-xl font-semibold mb-2">Cars Table</h2>
             <table className="w-full border text-left">
                 <thead>
@@ -142,6 +63,21 @@ export default function CarsPage() {
                 ))}
                 </tbody>
             </table>
+            <div className="flex justify-center mt-6 gap-4">
+                {Array.from({ length: totalPages }, (_, i) => (
+                    <Link
+                        key={i}
+                        href={`?page=${i + 1}`}
+                        className={`px-3 py-1 rounded border ${
+                            page === i + 1
+                                ? "bg-blue-500 text-white"
+                                : "bg-white text-blue-500"
+                        }`}
+                    >
+                        {i + 1}
+                    </Link>
+                ))}
+            </div>
         </div>
     );
 }
