@@ -8,13 +8,13 @@ export default async function Dashboard(){
     const session = await getServerSession(authOptions)
 
     if (!session) {
-        redirect("/admin")
+        redirect("/admin/login")
     }
     return (
         <div className="text-black">
             Dashboard
 
-            Welcome, Admin: {session.user?.email}
+            Welcome, Admin: {session.user.email}
            <LogoutButton/>
         </div>
     )

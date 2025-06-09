@@ -5,8 +5,9 @@ import type { NextRequest } from "next/server"
 const secret = process.env.NEXTAUTH_SECRET
 
 export async function middleware(req: NextRequest) {
-    const token = await getToken({ req, secret })
+    // const token = await getToken({ req, secret })
     const { pathname } = req.nextUrl
+    const token = await getToken({ req, secret, secureCookie: process.env.NODE_ENV === "production" });
 
     // If user is logged in, redirect away from login page
     if (token && pathname === "/admin/login") {
